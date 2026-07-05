@@ -1,0 +1,34 @@
+{
+  "name": "persona",
+  "version": "1.0.0",
+  "description": "Gen AI assignment 01: Create a Personas of Hitesh Sir & Piyus Sir ",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node backend/app.js",
+    "build": "postcss src/styles.css -o dist/output.css"
+  },
+  "keywords": [
+    "persona",
+    "genai",
+    "assignment",
+    "geminiModel"
+  ],
+  "author": "Yash",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "openai": "^6.45.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.2",
+    "@tailwindcss/postcss": "^4.3.2",
+    "autoprefixer": "^10.5.2",
+    "postcss": "^8.5.16",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^4.3.2"
+  }
+}
