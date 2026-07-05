@@ -50,13 +50,48 @@
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.05);
       }
+
+      .emoji-picker {
+        background: rgba(15, 23, 42, 0.65) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        scrollbar-width: thin !important;
+        scrollbar-color: #334155 transparent !important;
+
+        border-radius: 18px !important;
+        border: 1px solid #2a2a2a !important;
+      }
+
+      .emoji-picker__search-container {
+        background: rgba(15, 23, 42, 0.65) !important;
+      }
+
+      .emoji-picker__search {
+        background: #111 !important;
+        color: #fff !important;
+        border: 1px solid #333 !important;
+      }
+
+      .emoji-picker__content {
+        background: rgba(0, 0, 0, 0.498) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+      }
+
+      .emoji-picker__preview {
+        background: #000 !important;
+      }
+
+      .emoji-picker__tabs {
+        background: #000 !important;
+      }
     </style>
   </head>
   <body
     class="h-screen w-screen flex items-center justify-center p-0 sm:p-4 overflow-hidden text-slate-100"
   >
     <div
-      class="w-full h-full max-w-6xl sm:h-[85vh] glass sm:rounded-3xl shadow-2xl flex flex-col md:flex-row overflow-hidden relative"
+      class="w-full h-full max-w-6xl md:h-[85vh] glass sm:rounded-3xl shadow-2xl flex flex-col md:flex-row overflow-hidden relative"
     >
       <div
         class="w-full md:w-80 border-b md:border-b-0 md:border-r border-slate-800 flex flex-col justify-between p-4 bg-slate-950/40 shrink-0"
@@ -72,15 +107,14 @@
               <h1 class="font-bold tracking-tight text-white">
                 Persona DevBot
               </h1>
-              <p class="text-xs text-slate-500">Pick your instructor</p>
+              <p class="text-xs text-slate-400">Chat with your instructor</p>
             </div>
           </div>
 
           <div class="space-y-2" id="persona-list">
             <button
-              onclick="switchPersona('hc')"
               id="btn-hc"
-              class="w-full text-left p-3 rounded-2xl flex items-center gap-3 transition-all duration-300 border border-indigo-500/30 bg-indigo-500/10 shadow-lg shadow-indigo-500/5 group"
+              class="w-full text-left p-3 rounded-2xl flex items-center gap-3 transition-all duration-300 border border-indigo-500/30 bg-indigo-500/10 shadow-lg shadow-indigo-500/5 group cursor-pointer"
             >
               <div class="relative">
                 <div
@@ -106,15 +140,14 @@
                   class="text-xs text-slate-400 truncate mt-0.5"
                   id="preview-hc"
                 >
-                  Hey everyone, back with another video...
+                  Chai aur Code
                 </p>
               </div>
             </button>
 
             <button
-              onclick="switchPersona('piyush')"
               id="btn-piyush"
-              class="w-full text-left p-3 rounded-2xl flex items-center gap-3 transition-all duration-300 border border-transparent hover:bg-slate-800/40 group"
+              class="w-full text-left p-3 rounded-2xl flex items-center gap-3 transition-all duration-300 border border-transparent hover:bg-slate-800/40 group cursor-pointer"
             >
               <div class="relative">
                 <div
@@ -135,14 +168,14 @@
                   </h3>
                   <span
                     class="text-[10px] text-cyan-400 font-medium px-1.5 py-0.5 rounded-md bg-cyan-500/10 uppercase"
-                    >Principal Eng.</span
+                    >Pro Dev</span
                   >
                 </div>
                 <p
                   class="text-xs text-slate-500 truncate mt-0.5"
                   id="preview-piyush"
                 >
-                  Let's build a production-ready scale...
+                  Principal Engineer
                 </p>
               </div>
             </button>
@@ -150,11 +183,11 @@
         </div>
 
         <div
-          class="hidden md:flex items-center justify-between pt-4 border-t border-slate-900 text-xs text-slate-500 px-2"
+          class="hidden md:flex items-center justify-between pt-4 border-t border-slate-900 text-xs text-slate-500 px-2 relative"
         >
-          <span>Status: Backend Live</span>
+          <span>Status: Instructor are Active</span>
           <i
-            class="fa-solid fa-circle text-[8px] text-emerald-500 animate-ping"
+            class="fa-solid fa-circle text-[8px] text-green-500 animate-pulse"
           ></i>
         </div>
       </div>
@@ -179,7 +212,7 @@
                 class="text-xs text-indigo-400 font-medium flex items-center gap-1.5"
               >
                 <span class="w-1.5 h-1.5 bg-indigo-400 rounded-full"></span>
-                Chai aur Code Mode Active
+                Retired from corporate and full time YouTuber
               </p>
             </div>
           </div>
@@ -232,8 +265,9 @@
           <form id="chat-form" class="flex items-center gap-2 relative">
             <div class="flex-1 relative flex items-center">
               <button
+                id="emoji-btn"
                 type="button"
-                class="absolute left-3 text-slate-500 hover:text-slate-300 transition-colors"
+                class="absolute left-3 text-slate-500 hover:text-slate-300 transition-colors cursor-pointer"
               >
                 <i class="fa-regular fa-face-smile text-lg"></i>
               </button>
@@ -244,17 +278,17 @@
                 placeholder="Ask Hitesh about System Design, JavaScript or Chai..."
                 class="w-full bg-slate-900/80 border border-slate-800 rounded-2xl pl-11 pr-12 py-3.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 transition-all"
               />
-              <button
+              <!-- <button
                 type="button"
                 class="absolute right-3 text-slate-500 hover:text-slate-300 transition-colors"
               >
                 <i class="fa-solid fa-paperclip text-md"></i>
-              </button>
+              </button> -->
             </div>
             <button
               type="submit"
               id="send-btn"
-              class="h-12 w-12 rounded-2xl bg-indigo-600 hover:bg-indigo-500 flex items-center justify-center text-white font-medium transition-all shadow-lg shadow-indigo-600/20 active:scale-95 shrink-0"
+              class="h-12 w-12 rounded-2xl bg-indigo-600 hover:bg-indigo-500 flex items-center justify-center text-white font-medium transition-all shadow-lg shadow-indigo-600/20 active:scale-95 shrink-0 cursor-pointer"
             >
               <i class="fa-solid fa-paper-plane text-sm"></i>
             </button>
@@ -262,7 +296,6 @@
         </div>
       </div>
     </div>
-
-    <script src="src/script.js"></script>
+    <script type="module" src="src/script.js"></script>
   </body>
 </html>

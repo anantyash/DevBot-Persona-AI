@@ -1,3 +1,5 @@
+import { EmojiButton } from "https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button/+esm";
+
 const baseURL =
   window.location.hostname === "localhost" ||
   window.location.hostname === "127.0.0.1"
@@ -12,13 +14,13 @@ const conversations = {
   hc: [
     {
       sender: "persona",
-      text: "Hanji, Chai ready hai meri, aur aapki? ☕️",
+      text: "Hanji, Chai ready hai meri, aur aapki?  ☕️",
     },
   ],
   piyush: [
     {
       sender: "persona",
-      text: "Yo! What’s up? Let’s design something completely production-ready today. Thinking of scaling Node.js, Docker, or absolute WebRTC magic? 🚀",
+      text: "Hey there! Kaise ho? kya build kar rahe ho aaj kal?",
     },
   ],
 };
@@ -53,11 +55,35 @@ const activeAvatar = document.getElementById("active-avatar");
 const activeName = document.getElementById("active-name");
 const activeStatus = document.getElementById("active-status");
 const sendBtn = document.getElementById("send-btn");
+const emojiBtn = document.getElementById("emoji-btn");
+
+const picker = new EmojiButton({
+  position: "top-start",
+  autoHide: true,
+  theme: "dark",
+});
+
+emojiBtn.addEventListener("click", () => {
+  picker.togglePicker(emojiBtn);
+});
+
+picker.on("emoji", (emoji) => {
+  messageInput.value += emoji.emoji;
+  messageInput.focus();
+});
 
 // Initial setup on boot
 window.onload = () => {
   renderMessages();
 };
+
+document.getElementById("btn-hc").addEventListener("click", () => {
+  switchPersona("hc");
+});
+
+document.getElementById("btn-piyush").addEventListener("click", () => {
+  switchPersona("piyush");
+});
 
 // Switch active conversation persona view
 function switchPersona(personaId) {
@@ -195,7 +221,7 @@ chatForm.addEventListener("submit", async (e) => {
     // Provide user feedback inside the chat context if the backend request fails
     conversations[currentPersona].push({
       sender: "persona",
-      text: "❌ Failed to reach the system backend. Is the server running?",
+      text: "Error: Backend down hai dost! Lagta hai deployment crash ho gaya.😅 Aapne Rate limit exceed kr dii 😅, thodi der baad connect karte hain!",
     });
   } finally {
     hideTypingIndicator();
