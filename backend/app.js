@@ -4,11 +4,26 @@ import { message } from "./personas/index.js";
 import { hitesh } from "./personas/hc.js";
 import { piyush } from "./personas/pg.js";
 
+// For frontend
+import path from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 const port = process.env.PORT || 3000;
 
+// frontend ---------------
+app.use(express.static(path.join(__dirname, "../")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../index.html"));
+});
+// ------------------------
+
 app.use(cors());
 app.use(express.json());
+
 app.post("/persona/hc", async (req, res) => {
   try {
     const { prompt } = req.body;

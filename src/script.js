@@ -141,7 +141,11 @@ function renderMessages() {
 chatForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const text = messageInput.value.trim();
-  const baseURL = "http://localhost:3000/persona";
+  const baseURL =
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1"
+      ? "http://localhost:3000/persona"
+      : "/persona";
   const apiRouteParam = currentPersona === "piyush" ? "pg" : currentPersona;
   if (!text) return;
 
