@@ -6,6 +6,10 @@ Build an AI-powered website that uses a large language model (LLM) to simulate c
 
 The site is designed to learn from publicly available content such as YouTube videos, talks, blogs, and social media posts to recreate the tone and teaching style of both mentors.
 
+## Note
+
+I am Using Gemini OpenAI Compatible Toolfor this project
+
 ## Features
 
 - Chat with a simulated version of Hitesh Choudhary.
@@ -48,7 +52,20 @@ cp .env.exemple .env
 npm run server
 ```
 
-## Running the App
+Frontend (development)
+
+- Run the frontend by opening index.html with a Live Server (e.g., VS Code Live Server) or by running a simple live server in the project directory:
+
+```bash
+live-server .
+```
+
+- Alternatively, right-click index.html in VS Code and choose "Open with Live Server".
+
+This serves the frontend (index.html) on a local port (commonly http://127.0.0.1:5500).
+
+
+## Running the backend
 
 - Open your browser and visit `http://localhost:3000`.
 - Choose either Hitesh Choudhary or Piyush Garg.
